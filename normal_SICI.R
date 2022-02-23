@@ -150,3 +150,11 @@ r <- fit_and_compare2(df_real_stim$AMT90_diff, "(Real stim - real pre)",
                       df_sham_stim$AMT90_diff, "(Sham stim - sham pre)")
 r <- fit_and_compare2(df_real_stim$AMT100_diff, "(Real stim - real pre)",
                       df_sham_stim$AMT100_diff, "(Sham stim - sham pre)")
+
+
+# AUC --------------------------------------------------------------------------
+r <- fit_and_compare(df_real_stim$AUC_diff, "Real stim")
+r <- fit_and_compare(df_sham_stim$AUC_diff, "Sham stim")
+r <- fit_and_compare2(df_real_stim$AUC_diff, "Real stim", df_sham_stim$AUC_diff, "Sham stim")
+
+plot_fit(r)

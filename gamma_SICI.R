@@ -111,6 +111,13 @@ r <- fit_and_compare(df_real_stim$AMT90, "Real stim", df_real_post$AMT90, "Real 
 r <- fit_and_compare(df_real_stim$AMT100, "Real stim", df_real_post$AMT100, "Real post")
 
 
+# real post vs real pre -------------------------------------------------------
+r <- fit_and_compare(df_real_post$AMT70, "Real post", df_real_pre$AMT70, "Real pre")
+r <- fit_and_compare(df_real_post$AMT80, "Real post", df_real_pre$AMT80, "Real pre")
+r <- fit_and_compare(df_real_post$AMT90, "Real post", df_real_pre$AMT90, "Real pre")
+r <- fit_and_compare(df_real_post$AMT100, "Real post", df_real_pre$AMT100, "Real pre")
+
+
 # sham stim vs sham pre --------------------------------------------------------
 r <- fit_and_compare(df_sham_stim$AMT70, "Sham stim", df_sham_pre$AMT70, "Sham pre")
 r <- fit_and_compare(df_sham_stim$AMT80, "Sham stim", df_sham_pre$AMT80, "Sham pre")
@@ -125,11 +132,25 @@ r <- fit_and_compare(df_sham_stim$AMT90, "Sham stim", df_sham_post$AMT90, "Sham 
 r <- fit_and_compare(df_sham_stim$AMT100, "Sham stim", df_sham_post$AMT100, "Sham post")
 
 
+# sham post vs sham pre -------------------------------------------------------
+r <- fit_and_compare(df_sham_post$AMT70, "Sham post", df_sham_pre$AMT70, "Sham pre")
+r <- fit_and_compare(df_sham_post$AMT80, "Sham post", df_sham_pre$AMT80, "Sham pre")
+r <- fit_and_compare(df_sham_post$AMT90, "Sham post", df_sham_pre$AMT90, "Sham pre")
+r <- fit_and_compare(df_sham_post$AMT100, "Sham post", df_sham_pre$AMT100, "Sham pre")
+
+
 # sham vs real -----------------------------------------------------------------
 r <- fit_and_compare(df_real_stim$AMT70, "Real stim", df_sham_stim$AMT70, "Sham stim")
 r <- fit_and_compare(df_real_stim$AMT80, "Real stim", df_sham_stim$AMT80, "Sham stim")
 r <- fit_and_compare(df_real_stim$AMT90, "Real stim", df_sham_stim$AMT90, "Sham stim")
 r <- fit_and_compare(df_real_stim$AMT100, "Real stim", df_sham_stim$AMT100, "Sham stim")
+
+
+# responders vs non responders baseline ----------------------------------------
+r <- fit_and_compare(df_amt70_r$Baseline, "Baseline R", df_amt70_nr$Baseline, "Baseline NR")
+r <- fit_and_compare(df_amt80_r$Baseline, "Baseline R", df_amt80_nr$Baseline, "Baseline NR")
+r <- fit_and_compare(df_amt90_r$Baseline, "Baseline R", df_amt90_nr$Baseline, "Baseline NR")
+r <- fit_and_compare(df_amt100_r$Baseline, "Baseline R", df_amt100_nr$Baseline, "Baseline NR")
 
 
 # AUC --------------------------------------------------------------------------

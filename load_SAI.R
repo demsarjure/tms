@@ -232,10 +232,10 @@ df_real_female_stim <- df_real_female %>% filter(Time == 2)
 df_real_female_post <- df_real_female %>% filter(Time == 3)
 
 # responders vs non responders
-df_sham_r <- df_sham %>% filter(max_ISI_response == 1)
-df_sham_nr <- df_sham %>% filter(max_ISI_response == 0)
-df_real_r <- df_real %>% filter(max_ISI_response == 1)
-df_real_nr <- df_real %>% filter(max_ISI_response == 0)
+df_sham_r <- df_sham %>% filter(min_ISI_response == 1)
+df_sham_nr <- df_sham %>% filter(min_ISI_response == 0)
+df_real_r <- df_real %>% filter(min_ISI_response == 1)
+df_real_nr <- df_real %>% filter(min_ISI_response == 0)
 
 # pre, stim, post r
 df_sham_r_pre <- df_sham_r %>% filter(Time == 1)
@@ -257,8 +257,8 @@ df_real_nr_post <- df_real_nr %>% filter(Time == 3)
 df_baseline <- df %>%
   filter(Time == 1)
 
-df_baseline_r <- df_baseline %>% filter(max_ISI_response == 1)
-df_baseline_nr <- df_baseline %>% filter(max_ISI_response == 0)
+df_baseline_r <- df_baseline %>% filter(min_ISI_response == 1)
+df_baseline_nr <- df_baseline %>% filter(min_ISI_response == 0)
 df_baseline_male <- df_baseline %>% filter(Spol == 0)
 df_baseline_female <- df_baseline %>% filter(Spol == 1)
 
@@ -267,7 +267,10 @@ df_responders <- df %>%
   group_by(ID) %>%
   summarize(Starost = mean(Starost),
             Spol = mean(Spol),
-            Responder = mean(max_ISI_response))
+            Responder = mean(min_ISI_response))
 
 df_responders_male <- df_responders %>% filter(Spol == 0)
 df_responders_female <- df_responders %>% filter(Spol == 1)
+
+df_response_sai <- df %>% group_by(ID) %>%
+  summarize(min_ISI=mean(min_ISI_response))

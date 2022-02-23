@@ -20,7 +20,7 @@
 
 ### Responders
 
-* R baseline > NR baseline: 98%
+* R baseline > NR baseline: 96%
 
 ### Linear model SAI
 

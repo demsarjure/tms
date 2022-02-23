@@ -112,6 +112,9 @@ df_sham_nr <- df_sham %>% filter(RMT_response == 0)
 df_real_r <- df_real %>% filter(RMT_response == 1)
 df_real_nr <- df_real %>% filter(RMT_response == 0)
 
+df_response_rmt <- df %>% group_by(ID) %>%
+  summarize(RMT=mean(RMT_response))
+
 # pre, stim, post r
 df_sham_r_pre <- df_sham_r %>% filter(Time == 1)
 df_sham_r_stim <- df_sham_r %>% filter(Time == 2)

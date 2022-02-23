@@ -5,9 +5,6 @@ library(tidyverse)
 # load the data
 df <- read_excel("./data/SICI_GLMM.xlsx")
 
-# AUC
-df$AUC <- df$AMT70 + df$AMT80 + df$AMT90 + df$AMT100
-
 # create difference and response columns for each visit
 df$AMT70_baseline <- 0
 df$AMT70_diff <- 0
@@ -93,6 +90,10 @@ for (i in 1:n_participants) {
 # remove NAs
 df <- df %>% drop_na()
 
+# AUC
+df$AUC <- df$AMT70 + df$AMT80 + df$AMT90 + df$AMT100
+df$AUC_diff <- df$AMT70_diff + df$AMT80_diff + df$AMT90_diff + df$AMT100_diff
+
 # speacilised data frame for this analysis -------------------------------------
 df_amt <- data.frame(AMT=character(),
                      Sham=numeric(),
@@ -160,3 +161,39 @@ df_sham_post <- df_sham %>% filter(Time == 3)
 df_real_pre <- df_real %>% filter(Time == 1)
 df_real_stim <- df_real %>% filter(Time == 2)
 df_real_post <- df_real %>% filter(Time == 3)
+
+
+# responders -------------------------------------------------------------------
+df_amt70_r <- df %>% filter(AMT70_response == 1) %>%
+  group_by(ID) %>%
+  summarize(Baseline=mean(AMT70_baseline))
+df_amt70_nr <- df %>% filter(AMT70_response == 0) %>%
+  group_by(ID) %>%
+  summarize(Baseline=mean(AMT70_baseline))
+
+df_amt80_r <- df %>% filter(AMT80_response == 1) %>%
+  group_by(ID) %>%
+  summarize(Baseline=mean(AMT80_baseline))
+df_amt80_nr <- df %>% filter(AMT80_response == 0) %>%
+  group_by(ID) %>%
+  summarize(Baseline=mean(AMT80_baseline))
+
+df_amt90_r <- df %>% filter(AMT90_response == 1) %>%
+  group_by(ID) %>%
+  summarize(Baseline=mean(AMT90_baseline))
+df_amt90_nr <- df %>% filter(AMT90_response == 0) %>%
+  group_by(ID) %>%
+  summarize(Baseline=mean(AMT90_baseline))
+
+df_amt100_r <- df %>% filter(AMT100_response == 1) %>%
+  group_by(ID) %>%
+  summarize(Baseline=mean(AMT100_baseline))
+df_amt100_nr <- df %>% filter(AMT100_response == 0) %>%
+  group_by(ID) %>%
+  summarize(Baseline=mean(AMT100_baseline))
+
+df_response_sici <- df %>% group_by(ID) %>%
+  summarize(AMT70=mean(AMT70_response),
+            AMT80=mean(AMT80_response),
+            AMT90=mean(AMT90_response),
+            AMT100=mean(AMT100_response))
