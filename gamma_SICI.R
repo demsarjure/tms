@@ -156,3 +156,8 @@ r <- fit_and_compare(df_amt100_r$Baseline, "Baseline R", df_amt100_nr$Baseline, 
 # AUC --------------------------------------------------------------------------
 r <- fit_and_compare(df_real_stim$AUC, "Real stim", df_real_pre$AUC, "Real pre")
 r <- fit_and_compare(df_sham_stim$AUC, "Real stim", df_sham_pre$AUC, "Real pre")
+
+
+# AUC --------------------------------------------------------------------------
+r <- fit_and_compare(df_real_stim$AUC3, "Real stim", df_real_pre$AUC3, "Real pre")
+r <- fit_and_compare(df_sham_stim$AUC3, "Real stim", df_sham_pre$AUC3, "Real pre")

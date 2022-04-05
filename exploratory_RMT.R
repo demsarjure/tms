@@ -12,27 +12,20 @@ source("load_RMT.R")
 # summary statistics -----------------------------------------------------------
 summary_stats <- function(data) {
   mean_data <- round(mean(data), 2)
-  hdi_data <- round(hdi(data), 2)
+  q025 <- round(quantile(data, 0.025), 2)
+  q975 <- round(quantile(data, 0.975), 2)
   
-  cat(paste0(mean_data, " [", hdi_data[1], ", ", hdi_data[2], "]"))
+  cat(paste0(mean_data, " [", q025, ", ", q975, "]"))
 }
 
 
 # sham
-summary_stats(df_sham_pre$RMT)
-summary_stats(df_sham_stim$RMT)
-summary_stats(df_sham_post$RMT)
 summary_stats(df_sham_stim$RMT_diff)
 summary_stats(df_sham_post$RMT_diff)
-summary_stats(df_sham_post$RMT_diff2)
 
 # real
-summary_stats(df_real_pre$RMT)
-summary_stats(df_real_stim$RMT)
-summary_stats(df_real_post$RMT)
 summary_stats(df_real_stim$RMT_diff)
 summary_stats(df_real_post$RMT_diff)
-summary_stats(df_real_post$RMT_diff2)
 
 
 # plot RMT_diff through phases ---------------------------------------------

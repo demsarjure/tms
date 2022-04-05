@@ -133,12 +133,22 @@ r <- fit_and_compare(df_real_stim$AMT80_diff, "(Real stim - real pre)")
 r <- fit_and_compare(df_real_stim$AMT90_diff, "(Real stim - real pre)")
 r <- fit_and_compare(df_real_stim$AMT100_diff, "(Real stim - real pre)")
 
+r <- fit_and_compare(df_real_post$AMT70_diff, "(Real post - real pre)")
+r <- fit_and_compare(df_real_post$AMT80_diff, "(Real post - real pre)")
+r <- fit_and_compare(df_real_post$AMT90_diff, "(Real post - real pre)")
+r <- fit_and_compare(df_real_post$AMT100_diff, "(Real post - real pre)")
+
 
 # sham -------------------------------------------------------------------------
 r <- fit_and_compare(df_sham_stim$AMT70_diff, "(Sham stim - sham pre)")
 r <- fit_and_compare(df_sham_stim$AMT80_diff, "(Sham stim - sham pre)")
 r <- fit_and_compare(df_sham_stim$AMT90_diff, "(Sham stim - sham pre)")
 r <- fit_and_compare(df_sham_stim$AMT100_diff, "(Sham stim - sham pre)")
+
+r <- fit_and_compare(df_sham_post$AMT70_diff, "(Sham post - sham pre)")
+r <- fit_and_compare(df_sham_post$AMT80_diff, "(Sham post - sham pre)")
+r <- fit_and_compare(df_sham_post$AMT90_diff, "(Sham post - sham pre)")
+r <- fit_and_compare(df_sham_post$AMT100_diff, "(Sham post - sham pre)")
 
 
 # sham vs real -----------------------------------------------------------------
@@ -151,10 +161,30 @@ r <- fit_and_compare2(df_real_stim$AMT90_diff, "(Real stim - real pre)",
 r <- fit_and_compare2(df_real_stim$AMT100_diff, "(Real stim - real pre)",
                       df_sham_stim$AMT100_diff, "(Sham stim - sham pre)")
 
+r <- fit_and_compare2(df_real_post$AMT70_diff, "(Real stim - real pre)",
+                      df_sham_post$AMT70_diff, "(Sham stim - sham pre)")
+r <- fit_and_compare2(df_real_post$AMT80_diff, "(Real stim - real pre)",
+                      df_sham_post$AMT80_diff, "(Sham stim - sham pre)")
+r <- fit_and_compare2(df_real_post$AMT90_diff, "(Real stim - real pre)",
+                      df_sham_post$AMT90_diff, "(Sham stim - sham pre)")
+r <- fit_and_compare2(df_real_post$AMT100_diff, "(Real stim - real pre)",
+                      df_sham_post$AMT100_diff, "(Sham stim - sham pre)")
+
 
 # AUC --------------------------------------------------------------------------
 r <- fit_and_compare(df_real_stim$AUC_diff, "Real stim")
 r <- fit_and_compare(df_sham_stim$AUC_diff, "Sham stim")
 r <- fit_and_compare2(df_real_stim$AUC_diff, "Real stim", df_sham_stim$AUC_diff, "Sham stim")
+
+
+# AUC3 --------------------------------------------------------------------------
+r <- fit_and_compare(df_real_stim$AUC3_diff, "Real stim")
+r <- fit_and_compare(df_sham_stim$AUC3_diff, "Sham stim")
+r <- fit_and_compare2(df_real_stim$AUC3_diff, "Real stim", df_sham_stim$AUC3_diff, "Sham stim")
+
+r <- fit_and_compare(df_real_post$AUC3_diff, "Real post")
+r <- fit_and_compare(df_sham_post$AUC3_diff, "Sham post")
+r <- fit_and_compare2(df_real_post$AUC3_diff, "Real post", df_sham_post$AUC3_diff, "Sham post")
+
 
 plot_fit(r)

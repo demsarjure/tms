@@ -127,41 +127,58 @@ plot_fit <- function(samples, data, x_column, min_x = -1.5, max_x = 1.5, n = 20)
 }
 
 
+# ISIs -------------------------------------------------------------------------
+# sham
+r <- fit_and_compare(df_sham_stim$ISI20_diff, "(Sham stim - sham pre)")
+r <- fit_and_compare(df_sham_stim$ISI22_diff, "(Sham stim - sham pre)")
+r <- fit_and_compare(df_sham_stim$ISI24_diff, "(Sham stim - sham pre)")
+r <- fit_and_compare(df_sham_post$ISI20_diff, "(Sham stim - sham pre)")
+r <- fit_and_compare(df_sham_post$ISI22_diff, "(Sham stim - sham pre)")
+r <- fit_and_compare(df_sham_post$ISI24_diff, "(Sham stim - sham pre)")
+
+# real
+r <- fit_and_compare(df_real_stim$ISI20_diff, "(Real stim - real pre)")
+r <- fit_and_compare(df_real_stim$ISI22_diff, "(Real stim - real pre)")
+r <- fit_and_compare(df_real_stim$ISI24_diff, "(Real stim - real pre)")
+r <- fit_and_compare(df_real_post$ISI20_diff, "(Real stim - real pre)")
+r <- fit_and_compare(df_real_post$ISI22_diff, "(Real stim - real pre)")
+r <- fit_and_compare(df_real_post$ISI24_diff, "(Real stim - real pre)")
+
 # min_ISI ----------------------------------------------------------------------
 r <- fit_and_compare(df_real_stim$min_ISI_diff, "(Real stim - real pre)")
 df_stats <- data.frame(mean=r$mu,
-                       diff="Stimulation - Pre",
+                       diff="Stimulation - Baseline",
                        condition="Real")
 
 r <- fit_and_compare(df_real_post$min_ISI_diff, "(Real post - real pre)")
 df_stats <- df_stats %>% add_row(data.frame(mean=r$mu,
-                                            diff="Post - Pre",
+                                            diff="Post - Baseline",
                                             condition="Real"))
 
 r <- fit_and_compare(df_real_post$min_ISI_diff2, "(Real post - real stim)")
-df_stats <- df_stats %>% add_row(data.frame(mean=r$mu,
-                                            diff="Post - Stimulation",
-                                            condition="Real"))
+#df_stats <- df_stats %>% add_row(data.frame(mean=r$mu,
+#                                            diff="Post - Stimulation",
+#                                            condition="Real"))
 
 r <- fit_and_compare(df_sham_stim$min_ISI_diff, "(Sham stim - sham pre)")
 df_stats <- df_stats %>% add_row(data.frame(mean=r$mu,
-                                            diff="Stimulation - Pre",
+                                            diff="Stimulation - Baseline",
                                             condition="Sham"))
 
 r <- fit_and_compare(df_sham_post$min_ISI_diff, "(Sham post - sham pre)")
 df_stats <- df_stats %>% add_row(data.frame(mean=r$mu,
-                                            diff="Post - Pre",
+                                            diff="Post - Baseline",
                                             condition="Sham"))
 
 r <- fit_and_compare(df_sham_post$min_ISI_diff2, "(Sham post - sham stim)")
-df_stats <- df_stats %>% add_row(data.frame(mean=r$mu,
-                                            diff="Post - Stimulation",
-                                            condition="Sham"))
+#df_stats <- df_stats %>% add_row(data.frame(mean=r$mu,
+#                                            diff="Post - Stimulation",
+#                                            condition="Sham"))
 # plot
 plot_fit(r, df_sham_stim, "min_ISI_diff")
 
 # sorting
-df_stats$diff <- factor(df_stats$diff, levels=c("Post - Stimulation", "Post - Pre", "Stimulation - Pre"))
+df_stats$diff <- factor(df_stats$diff, levels=c("Post - Stimulation", "Post - Baseline", "Stimulation - Baseline"))
 
 # plot comparison
 ggplot(data = df_stats, aes(x = mean, y = diff)) +
@@ -169,13 +186,31 @@ ggplot(data = df_stats, aes(x = mean, y = diff)) +
   theme_minimal() +
   geom_vline(xintercept = 0, size = 1, alpha = 0.25) +
   facet_grid(. ~ condition) +
-  theme(panel.spacing = unit(2, "lines"))
+  theme(panel.spacing = unit(2, "lines")) +
+  xlab("ISI min") +
+  ylab("")
   
 
 # sham vs real -----------------------------------------------------------------
-r <- fit_and_compare2(df_real_stim$min_ISI_diff, "(Real stim - real pre)",
-                 df_sham_stim$min_ISI_diff, "(Sham stim - sham pre)")
+r <- fit_and_compare2(df_real_stim$ISI20_diff, "(Real stim - real pre)",
+                      df_sham_stim$ISI20_diff, "(Sham stim - sham pre)")
+r <- fit_and_compare2(df_real_post$ISI20_diff, "(Real stim - real pre)",
+                      df_sham_post$ISI20_diff, "(Sham stim - sham pre)")
 
+r <- fit_and_compare2(df_real_stim$ISI22_diff, "(Real stim - real pre)",
+                      df_sham_stim$ISI22_diff, "(Sham stim - sham pre)")
+r <- fit_and_compare2(df_real_post$ISI22_diff, "(Real stim - real pre)",
+                      df_sham_post$ISI22_diff, "(Sham stim - sham pre)")
+
+r <- fit_and_compare2(df_real_stim$ISI24_diff, "(Real stim - real pre)",
+                      df_sham_stim$ISI24_diff, "(Sham stim - sham pre)")
+r <- fit_and_compare2(df_real_post$ISI24_diff, "(Real stim - real pre)",
+                      df_sham_post$ISI24_diff, "(Sham stim - sham pre)")
+
+r <- fit_and_compare2(df_real_stim$min_ISI_diff, "(Real stim - real pre)",
+                      df_sham_stim$min_ISI_diff, "(Sham stim - sham pre)")
+r <- fit_and_compare2(df_real_post$min_ISI_diff, "(Real stim - real pre)",
+                      df_sham_post$min_ISI_diff, "(Sham stim - sham pre)")
 
 # max_ISI ----------------------------------------------------------------------
 r <- fit_and_compare(df_real_stim$max_ISI_diff, "(Real stim - real pre)")
@@ -215,3 +250,8 @@ ggplot(data = df_stats, aes(x = mean, y = diff)) +
   geom_vline(xintercept = 0, size = 1, alpha = 0.25) +
   facet_grid(. ~ condition) +
   theme(panel.spacing = unit(2, "lines"))
+
+
+# male vs female baseline ------------------------------------------------------
+r <- fit_and_compare2(df_baseline_r$min_ISI_baseline, "Baseline R",
+                      df_baseline_nr$min_ISI_baseline, "Baseline NR")

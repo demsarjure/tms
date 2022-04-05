@@ -10,7 +10,7 @@ library(mcmcse)
 
 # prep -------------------------------------------------------------------------
 # load the data
-source("load_RMT.R")
+source("load_SICI.R")
 
 # model
 model <- cmdstan_model("./models/linear_robust.stan")
@@ -60,11 +60,9 @@ summary_stats <- function(data) {
 }
 
 
-# real baseline ----------------------------------------------------------------
-df_s_real_stim <- fit_and_compare(df_real_stim$RMT_baseline, df_real_stim$RMT_diff, "Real stim")
+# sham and real ----------------------------------------------------------------
+df_s_real_stim <- fit_and_compare(df_real_stim$AUC3_baseline, df_real_stim$AUC3_diff, "Real stim")
 summary_stats(df_s_real_stim$b)
 
-
-# sham baseline ----------------------------------------------------------------
-df_s_sham_stim <- fit_and_compare(df_sham_stim$RMT_baseline, df_sham_stim$RMT_diff, "Sham stim")
+df_s_sham_stim <- fit_and_compare(df_sham_stim$AUC3_baseline, df_sham_stim$AUC3_diff, "Sham stim")
 summary_stats(df_s_sham_stim$b)

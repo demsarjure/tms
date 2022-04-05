@@ -50,12 +50,19 @@ fit_and_compare <- function(x, y, name){
 }
 
 
-# sham vs real -----------------------------------------------------------------
+# summary stats ----------------------------------------------------------------
+summary_stats <- function(data) {
+  mean_data <- round(mean(data), 2)
+  q025 <- round(quantile(data, 0.025), 2)
+  q975 <- round(quantile(data, 0.975), 2)
+  
+  cat(paste0(mean_data, " [", q025, ", ", q975, "]"))
+}
+
+
+# sham and real ----------------------------------------------------------------
 df_s_real_stim <- fit_and_compare(df_real_stim$min_ISI_baseline, df_real_stim$min_ISI_diff, "Real stim")
-df_s_real_post <- fit_and_compare(df_real_post$min_ISI_baseline, df_real_post$min_ISI_diff, "Real post")
-mcse(df_s_real_stim$b < df_s_real_post$b)
+summary_stats(df_s_real_stim$b)
 
 df_s_sham_stim <- fit_and_compare(df_sham_stim$min_ISI_baseline, df_sham_stim$min_ISI_diff, "Sham stim")
-df_s_sham_post <- fit_and_compare(df_sham_post$min_ISI_baseline, df_sham_post$min_ISI_diff, "Sham post")
-mcse(df_s_sham_stim$b < df_s_sham_post$b)
-
+summary_stats(df_s_sham_stim$b)

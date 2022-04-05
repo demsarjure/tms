@@ -176,6 +176,8 @@ ggplot(data = df_stats, aes(x = mean, y = diff)) +
 r <- fit_and_compare2(df_real_stim$RMT_diff, "(Real stim - real pre)",
                  df_sham_stim$RMT_diff, "(Sham stim - sham pre)")
 
+r <- fit_and_compare2(df_real_post$RMT_diff2, "(Real post - real pre)",
+                      df_sham_post$RMT_diff2, "(Sham post - sham pre)")
 
 # male vs female ---------------------------------------------------------------
 r <- fit_and_compare(df_sham_female_stim$RMT_diff, "Female (Sham stim - sham pre)")

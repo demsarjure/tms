@@ -19,14 +19,28 @@ summary_stats <- function(data) {
 
 
 # sham
-summary_stats(df_sham_pre$AMT70)
-summary_stats(df_sham_stim$AMT70)
-summary_stats(df_sham_post$AMT70)
+summary_stats(df_sham_stim$AMT70_diff)
+summary_stats(df_sham_stim$AMT80_diff)
+summary_stats(df_sham_stim$AMT90_diff)
+summary_stats(df_sham_stim$AMT100_diff)
+summary_stats(df_sham_stim$AUC3_diff)
+summary_stats(df_sham_post$AMT70_diff)
+summary_stats(df_sham_post$AMT80_diff)
+summary_stats(df_sham_post$AMT90_diff)
+summary_stats(df_sham_post$AMT100_diff)
+summary_stats(df_sham_post$AUC3_diff)
 
 # real
-summary_stats(df_real_pre$AMT70)
-summary_stats(df_real_stim$AMT70)
-summary_stats(df_real_post$AMT70)
+summary_stats(df_real_stim$AMT70_diff)
+summary_stats(df_real_stim$AMT80_diff)
+summary_stats(df_real_stim$AMT90_diff)
+summary_stats(df_real_stim$AMT100_diff)
+summary_stats(df_real_stim$AUC3_diff)
+summary_stats(df_real_post$AMT70_diff)
+summary_stats(df_real_post$AMT80_diff)
+summary_stats(df_real_post$AMT90_diff)
+summary_stats(df_real_post$AMT100_diff)
+summary_stats(df_real_post$AUC3_diff)
 
 
 # distributions ----------------------------------------------------------------
