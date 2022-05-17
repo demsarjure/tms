@@ -13,7 +13,7 @@ source("load_SICI.R")
 summary_stats <- function(data) {
   mean_data <- round(mean(data), 2)
   hdi_data <- round(hdi(data), 2)
-  
+
   cat(paste0(mean_data, " [", hdi_data[1], ", ", hdi_data[2], "]"))
 }
 

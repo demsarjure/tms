@@ -14,7 +14,7 @@ summary_stats <- function(data) {
   mean_data <- round(mean(data), 2)
   q025 <- round(quantile(data, 0.025), 2)
   q975 <- round(quantile(data, 0.975), 2)
-  
+
   cat(paste0(mean_data, " [", q025, ", ", q975, "]"))
 }
 
@@ -23,20 +23,24 @@ summary_stats(df_sham_stim$ISI20_diff)
 summary_stats(df_sham_stim$ISI22_diff)
 summary_stats(df_sham_stim$ISI24_diff)
 summary_stats(df_sham_stim$min_ISI_diff)
+summary_stats(df_sham_stim$max_ISI_diff)
 summary_stats(df_sham_post$ISI20_diff)
 summary_stats(df_sham_post$ISI22_diff)
 summary_stats(df_sham_post$ISI24_diff)
 summary_stats(df_sham_post$min_ISI_diff)
+summary_stats(df_sham_post$max_ISI_diff)
 
 # real
 summary_stats(df_real_stim$ISI20_diff)
 summary_stats(df_real_stim$ISI22_diff)
 summary_stats(df_real_stim$ISI24_diff)
 summary_stats(df_real_stim$min_ISI_diff)
+summary_stats(df_real_stim$max_ISI_diff)
 summary_stats(df_real_post$ISI20_diff)
 summary_stats(df_real_post$ISI22_diff)
 summary_stats(df_real_post$ISI24_diff)
 summary_stats(df_real_post$min_ISI_diff)
+summary_stats(df_real_post$max_ISI_diff)
 
 # plot min_ISI_diff through phases ---------------------------------------------
 df_median <- df %>%

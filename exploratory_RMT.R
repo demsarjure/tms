@@ -14,18 +14,26 @@ summary_stats <- function(data) {
   mean_data <- round(mean(data), 2)
   q025 <- round(quantile(data, 0.025), 2)
   q975 <- round(quantile(data, 0.975), 2)
-  
+
   cat(paste0(mean_data, " [", q025, ", ", q975, "]"))
 }
 
 
-# sham
+# sham RMT
 summary_stats(df_sham_stim$RMT_diff)
 summary_stats(df_sham_post$RMT_diff)
 
-# real
+# real RMT
 summary_stats(df_real_stim$RMT_diff)
 summary_stats(df_real_post$RMT_diff)
+
+# sham AMT
+summary_stats(df_sham_stim$AMT_diff)
+summary_stats(df_sham_post$AMT_diff)
+
+# real AMT
+summary_stats(df_real_stim$AMT_diff)
+summary_stats(df_real_post$AMT_diff)
 
 
 # plot RMT_diff through phases ---------------------------------------------

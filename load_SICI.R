@@ -99,6 +99,10 @@ df$AUC3 <- 1/3 * (df$AMT70+df$AMT90) + 1/3 * (df$AMT80+df$AMT100) + 1/3 * (df$AM
 df$AUC3_baseline <- 1/3 * (df$AMT70_baseline+df$AMT90_baseline) + 1/3 * (df$AMT80_baseline+df$AMT100_baseline) + 1/3 * (df$AMT90_baseline+df$AMT100_baseline)
 df$AUC3_diff <- 1/3 * (df$AMT70_diff+df$AMT90_diff) + 1/3 * (df$AMT80_diff+df$AMT100_diff) + 1/3 * (df$AMT90_diff+df$AMT100_diff)
 
+df$AUCAVG <- (df$AMT70+df$AMT80+df$AMT90+df$AMT100) / 4
+df$AUCAVG_baseline <- (df$AMT70_baseline+df$AMT80_baseline+df$AMT90_baseline+df$AMT100_baseline) / 4
+df$AUCAVG_diff <- (df$AMT70_diff+df$AMT80_diff+df$AMT90_diff+df$AMT100_diff) / 4
+
 # speacilised data frame for this analysis -------------------------------------
 df_amt <- data.frame(AMT=character(),
                      Sham=numeric(),

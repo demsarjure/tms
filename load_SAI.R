@@ -37,6 +37,7 @@ for (i in 1:n_visits) {
 df$max_ISI <- 0
 df$max_ISI_baseline <- 0
 df$max_ISI_response <- 0 # label as non responder at first
+df$max_ISI_response_sham <- 0
 df$max_ISI_diff <- 0
 df$max_ISI_diff2 <- 0
 df$max_ISI_relative <- 0
@@ -47,6 +48,7 @@ df$max_ISI_match <- 0
 df$min_ISI <- 0
 df$min_ISI_baseline <- 0
 df$min_ISI_response <- 0 # label as non responder at first
+df$min_ISI_response_sham <- 0
 df$min_ISI_diff <- 0
 df$min_ISI_diff2 <- 0
 df$min_ISI_relative <- 0
@@ -103,7 +105,15 @@ for (i in 1:n_participants) {
   # responder if max_ISI < max_ISI_baseline at real stimulation
   if (df[ix+4, ]$max_ISI_diff < 0)
     df[ix:(ix+5), ]$max_ISI_response <- 1
-    
+
+  # same for sham
+  if (df[ix+1, ]$max_ISI_diff < 0)
+    df[ix:(ix+5), ]$max_ISI_response_sham <- 1
+
+  # responder if max_ISI < max_ISI_baseline at real stimulation
+  if (df[ix+4, ]$max_ISI_diff < 0)
+    df[ix:(ix+5), ]$max_ISI_response <- 1
+
   # do sham and real max ISI match?
   max_sham_ISI = ""
   if (sham_baseline$ISI20 < sham_baseline$ISI22 &&
@@ -159,7 +169,11 @@ for (i in 1:n_participants) {
   # responder if min_ISI < min_ISI_baseline at real stimulation
   if (df[ix+4, ]$min_ISI_diff < 0)
     df[ix:(ix+5), ]$min_ISI_response <- 1
-  
+
+  # same for sham
+  if (df[ix+1, ]$min_ISI_diff < 0)
+    df[ix:(ix+5), ]$min_ISI_response_sham <- 1
+
   # do sham and real min ISI match?
   min_sham_ISI = ""
   if (sham_baseline$ISI20 > sham_baseline$ISI22 &&
