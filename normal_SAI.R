@@ -11,6 +11,7 @@ library(mcmcse)
 # prep -------------------------------------------------------------------------
 # load the data
 source("load_SAI.R")
+source("load_SAI_no.R")
 
 # model
 model <- cmdstan_model("./models/cauchy.stan")
@@ -151,6 +152,14 @@ r <- fit_and_compare(df_sham_post$ISI20_diff, "(Sham stim - sham pre)")
 r <- fit_and_compare(df_sham_post$ISI22_diff, "(Sham stim - sham pre)")
 r <- fit_and_compare(df_sham_post$ISI24_diff, "(Sham stim - sham pre)")
 
+# no
+r <- fit_and_compare(df_no_stim$ISI20_diff, "(No stim - no pre)")
+r <- fit_and_compare(df_no_stim$ISI22_diff, "(No stim - no pre)")
+r <- fit_and_compare(df_no_stim$ISI24_diff, "(No stim - no pre)")
+r <- fit_and_compare(df_no_post$ISI20_diff, "(No stim - no pre)")
+r <- fit_and_compare(df_no_post$ISI22_diff, "(No stim - no pre)")
+r <- fit_and_compare(df_no_post$ISI24_diff, "(No stim - no pre)")
+
 
 # sham vs real -----------------------------------------------------------------
 r <- fit_and_compare2(df_real_stim$ISI20_diff, "(Real stim - real pre)",
@@ -160,12 +169,44 @@ r <- fit_and_compare2(df_real_stim$ISI22_diff, "(Real stim - real pre)",
 r <- fit_and_compare2(df_real_stim$ISI24_diff, "(Real stim - real pre)",
                       df_sham_stim$ISI24_diff, "(Sham stim - sham pre)")
 
-r <- fit_and_compare2(df_real_post$ISI20_diff, "(Real stim - real pre)",
-                      df_sham_post$ISI20_diff, "(Sham stim - sham pre)")
-r <- fit_and_compare2(df_real_post$ISI22_diff, "(Real stim - real pre)",
-                      df_sham_post$ISI22_diff, "(Sham stim - sham pre)")
-r <- fit_and_compare2(df_real_post$ISI24_diff, "(Real stim - real pre)",
-                      df_sham_post$ISI24_diff, "(Sham stim - sham pre)")
+r <- fit_and_compare2(df_real_post$ISI20_diff, "(Real post - real pre)",
+                      df_sham_post$ISI20_diff, "(Sham post - sham pre)")
+r <- fit_and_compare2(df_real_post$ISI22_diff, "(Real post - real pre)",
+                      df_sham_post$ISI22_diff, "(Sham post - sham pre)")
+r <- fit_and_compare2(df_real_post$ISI24_diff, "(Real post - real pre)",
+                      df_sham_post$ISI24_diff, "(Sham post - sham pre)")
+
+
+# no vs real -------------------------------------------------------------------
+r <- fit_and_compare2(df_real_stim$ISI20_diff, "(Real stim - real pre)",
+                      df_no_stim$ISI20_diff, "(No stim - no pre)")
+r <- fit_and_compare2(df_real_stim$ISI22_diff, "(Real stim - real pre)",
+                      df_no_stim$ISI22_diff, "(No stim - no pre)")
+r <- fit_and_compare2(df_real_stim$ISI24_diff, "(Real stim - real pre)",
+                      df_no_stim$ISI24_diff, "(No stim - no pre)")
+
+r <- fit_and_compare2(df_real_post$ISI20_diff, "(Real post - real pre)",
+                      df_no_post$ISI20_diff, "(No post - no pre)")
+r <- fit_and_compare2(df_real_post$ISI22_diff, "(Real post - real pre)",
+                      df_no_post$ISI22_diff, "(No post - no pre)")
+r <- fit_and_compare2(df_real_post$ISI24_diff, "(Real post - real pre)",
+                      df_no_post$ISI24_diff, "(No post - no pre)")
+
+
+# no vs sham -------------------------------------------------------------------
+r <- fit_and_compare2(df_sham_stim$ISI20_diff, "(Sham stim - sham pre)",
+                      df_no_stim$ISI20_diff, "(No stim - no pre)")
+r <- fit_and_compare2(df_sham_stim$ISI22_diff, "(Sham stim - sham pre)",
+                      df_no_stim$ISI22_diff, "(No stim - no pre)")
+r <- fit_and_compare2(df_sham_stim$ISI24_diff, "(Sham stim - sham pre)",
+                      df_no_stim$ISI24_diff, "(No stim - no pre)")
+
+r <- fit_and_compare2(df_sham_post$ISI20_diff, "(Sham post - sham pre)",
+                      df_no_post$ISI20_diff, "(No post - no pre)")
+r <- fit_and_compare2(df_sham_post$ISI22_diff, "(Sham post - sham pre)",
+                      df_no_post$ISI22_diff, "(No post - no pre)")
+r <- fit_and_compare2(df_sham_post$ISI24_diff, "(Sham post - sham pre)",
+                      df_no_post$ISI24_diff, "(No post - no pre)")
 
 
 # max_ISI ----------------------------------------------------------------------
@@ -189,11 +230,27 @@ df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
                                      diff = 2,
                                      condition = "Sham"))
 
+r <- fit_and_compare(df_no_stim$max_ISI_diff, "(No stim - no pre)")
+df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
+                                     diff = 1,
+                                     condition = "No"))
+
+r <- fit_and_compare(df_no_post$max_ISI_diff, "(No post - no pre)")
+df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
+                                     diff = 2,
+                                     condition = "No"))
+
 # add dummy entries
 df_samples <- df_samples %>%
   add_row(data.frame(mu = 0, diff = 0, condition = "Real"))
 df_samples <- df_samples %>%
   add_row(data.frame(mu = 0, diff = 0, condition = "Sham"))
+df_samples <- df_samples %>%
+  add_row(data.frame(mu = 0, diff = 0, condition = "No"))
+
+# set factors
+df_samples$condition <-
+  factor(df_samples$condition, levels = c("Real", "Sham", "No"))
 
 ggplot(df_samples, aes(x = diff, y = mu)) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "grey50") +
@@ -204,7 +261,7 @@ ggplot(df_samples, aes(x = diff, y = mu)) +
                     breaks = c(0, 1, 2),
                     labels = c("Pre", "During", "Post"))
 
-ggsave("./fig/SAI.tiff",
+ggsave("./fig/SAI_2.tiff",
        width = 1920,
        height = 960,
        dpi = 300,
@@ -215,3 +272,15 @@ r <- fit_and_compare2(df_real_stim$max_ISI_diff, "(Real stim - real pre)",
 
 r <- fit_and_compare2(df_real_post$max_ISI_diff, "(Real stim - real pre)",
                       df_sham_post$max_ISI_diff, "(Sham stim - sham pre)")
+
+r <- fit_and_compare2(df_real_stim$max_ISI_diff, "(Real stim - real pre)",
+                      df_no_stim$max_ISI_diff, "(No stim - no pre)")
+
+r <- fit_and_compare2(df_real_post$max_ISI_diff, "(Real stim - real pre)",
+                      df_no_post$max_ISI_diff, "(No stim - no pre)")
+
+r <- fit_and_compare2(df_sham_stim$max_ISI_diff, "(Sham stim - sham pre)",
+                      df_no_stim$max_ISI_diff, "(No stim - no pre)")
+
+r <- fit_and_compare2(df_sham_post$max_ISI_diff, "(Sham stim - sham pre)",
+                      df_no_post$max_ISI_diff, "(No stim - no pre)")

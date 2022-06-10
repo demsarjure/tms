@@ -11,10 +11,10 @@ library(mcmcse)
 # prep -------------------------------------------------------------------------
 # load the data
 source("load_RMT.R")
+source("load_RMT_no.R")
 
 # model
 model <- cmdstan_model("./models/cauchy.stan")
-
 
 # fit and compare function -----------------------------------------------------
 fit_and_compare <- function(data, name) {
@@ -150,7 +150,6 @@ df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
                                      diff = 2,
                                      condition = "Real"))
 
-
 r <- fit_and_compare(df_sham_stim$RMT_diff, "(Sham stim - sham pre)")
 df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
                                      diff = 1,
@@ -161,11 +160,27 @@ df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
                                      diff = 2,
                                      condition = "Sham"))
 
+r <- fit_and_compare(df_no_stim$RMT_diff, "(No stim - no pre)")
+df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
+                                     diff = 1,
+                                     condition = "No"))
+
+r <- fit_and_compare(df_no_post$RMT_diff, "(No post - no pre)")
+df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
+                                     diff = 2,
+                                     condition = "No"))
+
 # add dummy entries
 df_samples <- df_samples %>%
   add_row(data.frame(mu = 0, diff = 0, condition = "Real"))
 df_samples <- df_samples %>%
   add_row(data.frame(mu = 0, diff = 0, condition = "Sham"))
+df_samples <- df_samples %>%
+  add_row(data.frame(mu = 0, diff = 0, condition = "No"))
+
+# set factors
+df_samples$condition <-
+  factor(df_samples$condition, levels = c("Real", "Sham", "No"))
 
 ggplot(df_samples, aes(x = diff, y = mu)) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "grey50") +
@@ -176,7 +191,7 @@ ggplot(df_samples, aes(x = diff, y = mu)) +
                     breaks = c(0, 1, 2),
                     labels = c("Pre", "During", "Post"))
 
-ggsave("./fig/RMT.tiff",
+ggsave("./fig/RMT_2.tiff",
        width = 1920,
        height = 960,
        dpi = 300,
@@ -184,8 +199,18 @@ ggsave("./fig/RMT.tiff",
 
 r <- fit_and_compare2(df_real_stim$RMT_diff, "(Real stim - real pre)",
                       df_sham_stim$RMT_diff, "(Sham stim - sham pre)")
-r <- fit_and_compare2(df_real_post$RMT_diff2, "(Real post - real pre)",
-                      df_sham_post$RMT_diff2, "(Sham post - sham pre)")
+r <- fit_and_compare2(df_real_post$RMT_diff, "(Real post - real pre)",
+                      df_sham_post$RMT_diff, "(Sham post - sham pre)")
+
+r <- fit_and_compare2(df_real_stim$RMT_diff, "(Real stim - real pre)",
+                      df_no_stim$RMT_diff, "(No stim - no pre)")
+r <- fit_and_compare2(df_real_post$RMT_diff, "(Real post - real pre)",
+                      df_no_post$RMT_diff, "(No post - no pre)")
+
+r <- fit_and_compare2(df_sham_stim$RMT_diff, "(Sham stim - sham pre)",
+                      df_no_stim$RMT_diff, "(No stim - no pre)")
+r <- fit_and_compare2(df_sham_post$RMT_diff, "(Sham post - sham pre)",
+                      df_no_post$RMT_diff, "(No post - no pre)")
 
 # AMT --------------------------------------------------------------------------
 r <- fit_and_compare(df_real_stim$AMT_diff, "(Real stim - real pre)")
@@ -208,11 +233,27 @@ df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
                                      diff = 2,
                                      condition = "Sham"))
 
+r <- fit_and_compare(df_no_stim$AMT_diff, "(No stim - no pre)")
+df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
+                                     diff = 1,
+                                     condition = "No"))
+
+r <- fit_and_compare(df_no_post$AMT_diff, "(No post - no pre)")
+df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
+                                     diff = 2,
+                                     condition = "No"))
+
 # add dummy entries
 df_samples <- df_samples %>%
   add_row(data.frame(mu = 0, diff = 0, condition = "Real"))
 df_samples <- df_samples %>%
   add_row(data.frame(mu = 0, diff = 0, condition = "Sham"))
+df_samples <- df_samples %>%
+  add_row(data.frame(mu = 0, diff = 0, condition = "No"))
+
+# set factors
+df_samples$condition <-
+  factor(df_samples$condition, levels = c("Real", "Sham", "No"))
 
 ggplot(df_samples, aes(x = diff, y = mu)) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "grey50") +
@@ -223,7 +264,7 @@ ggplot(df_samples, aes(x = diff, y = mu)) +
                     breaks = c(0, 1, 2),
                     labels = c("Pre", "During", "Post"))
 
-ggsave("./fig/AMT.tiff",
+ggsave("./fig/AMT_2.tiff",
        width = 1920,
        height = 960,
        dpi = 300,
@@ -233,3 +274,13 @@ r <- fit_and_compare2(df_real_stim$AMT_diff, "(Real stim - real pre)",
                       df_sham_stim$AMT_diff, "(Sham stim - sham pre)")
 r <- fit_and_compare2(df_real_post$AMT_diff, "(Real post - real pre)",
                       df_sham_post$AMT_diff, "(Sham post - sham pre)")
+
+r <- fit_and_compare2(df_real_stim$AMT_diff, "(Real stim - real pre)",
+                      df_no_stim$AMT_diff, "(No stim - no pre)")
+r <- fit_and_compare2(df_real_post$AMT_diff, "(Real post - real pre)",
+                      df_no_post$AMT_diff, "(No post - no pre)")
+
+r <- fit_and_compare2(df_sham_stim$AMT_diff, "(Sham stim - sham pre)",
+                      df_no_stim$AMT_diff, "(No stim - no pre)")
+r <- fit_and_compare2(df_sham_post$AMT_diff, "(Sham post - sham pre)",
+                      df_no_post$AMT_diff, "(No post - no pre)")

@@ -11,6 +11,7 @@ library(mcmcse)
 # prep -------------------------------------------------------------------------
 # load the data
 source("load_SICI.R")
+source("load_SICI_no.R")
 
 # model
 model <- cmdstan_model("./models/cauchy.stan")
@@ -158,6 +159,18 @@ r <- fit_and_compare(df_sham_post$AMT90_diff, "(Sham post - sham pre)")
 r <- fit_and_compare(df_sham_post$AMT100_diff, "(Sham post - sham pre)")
 
 
+# no -------------------------------------------------------------------------
+r <- fit_and_compare(df_no_stim$AMT70_diff, "(No stim - no pre)")
+r <- fit_and_compare(df_no_stim$AMT80_diff, "(No stim - no pre)")
+r <- fit_and_compare(df_no_stim$AMT90_diff, "(No stim - no pre)")
+r <- fit_and_compare(df_no_stim$AMT100_diff, "(No stim - no pre)")
+
+r <- fit_and_compare(df_no_post$AMT70_diff, "(No post - no pre)")
+r <- fit_and_compare(df_no_post$AMT80_diff, "(No post - no pre)")
+r <- fit_and_compare(df_no_post$AMT90_diff, "(No post - no pre)")
+r <- fit_and_compare(df_no_post$AMT100_diff, "(No post - no pre)")
+
+
 # sham vs real -----------------------------------------------------------------
 r <- fit_and_compare2(df_real_stim$AMT70_diff, "(Real stim - real pre)",
                       df_sham_stim$AMT70_diff, "(Sham stim - sham pre)")
@@ -168,15 +181,54 @@ r <- fit_and_compare2(df_real_stim$AMT90_diff, "(Real stim - real pre)",
 r <- fit_and_compare2(df_real_stim$AMT100_diff, "(Real stim - real pre)",
                       df_sham_stim$AMT100_diff, "(Sham stim - sham pre)")
 
-r <- fit_and_compare2(df_real_post$AMT70_diff, "(Real stim - real pre)",
-                      df_sham_post$AMT70_diff, "(Sham stim - sham pre)")
-r <- fit_and_compare2(df_real_post$AMT80_diff, "(Real stim - real pre)",
-                      df_sham_post$AMT80_diff, "(Sham stim - sham pre)")
-r <- fit_and_compare2(df_real_post$AMT90_diff, "(Real stim - real pre)",
-                      df_sham_post$AMT90_diff, "(Sham stim - sham pre)")
-r <- fit_and_compare2(df_real_post$AMT100_diff, "(Real stim - real pre)",
-                      df_sham_post$AMT100_diff, "(Sham stim - sham pre)")
+r <- fit_and_compare2(df_real_post$AMT70_diff, "(Real post - real pre)",
+                      df_sham_post$AMT70_diff, "(Sham post - sham pre)")
+r <- fit_and_compare2(df_real_post$AMT80_diff, "(Real post - real pre)",
+                      df_sham_post$AMT80_diff, "(Sham post - sham pre)")
+r <- fit_and_compare2(df_real_post$AMT90_diff, "(Real post - real pre)",
+                      df_sham_post$AMT90_diff, "(Sham post - sham pre)")
+r <- fit_and_compare2(df_real_post$AMT100_diff, "(Real post - real pre)",
+                      df_sham_post$AMT100_diff, "(Sham post - sham pre)")
 
+
+# no vs real -----------------------------------------------------------------
+r <- fit_and_compare2(df_real_stim$AMT70_diff, "(Real stim - real pre)",
+                      df_no_stim$AMT70_diff, "(No stim - no pre)")
+r <- fit_and_compare2(df_real_stim$AMT80_diff, "(Real stim - real pre)",
+                      df_no_stim$AMT80_diff, "(No stim - no pre)")
+r <- fit_and_compare2(df_real_stim$AMT90_diff, "(Real stim - real pre)",
+                      df_no_stim$AMT90_diff, "(No stim - no pre)")
+r <- fit_and_compare2(df_real_stim$AMT100_diff, "(Real stim - real pre)",
+                      df_no_stim$AMT100_diff, "(No stim - no pre)")
+
+r <- fit_and_compare2(df_real_post$AMT70_diff, "(Real post - real pre)",
+                      df_no_post$AMT70_diff, "(No post - no pre)")
+r <- fit_and_compare2(df_real_post$AMT80_diff, "(Real post - real pre)",
+                      df_no_post$AMT80_diff, "(No post - no pre)")
+r <- fit_and_compare2(df_real_post$AMT90_diff, "(Real post - real pre)",
+                      df_no_post$AMT90_diff, "(No post - no pre)")
+r <- fit_and_compare2(df_real_post$AMT100_diff, "(Real post - real pre)",
+                      df_no_post$AMT100_diff, "(No post - no pre)")
+
+
+# no vs sham -----------------------------------------------------------------
+r <- fit_and_compare2(df_sham_stim$AMT70_diff, "(Sham stim - sham pre)",
+                      df_no_stim$AMT70_diff, "(No stim - no pre)")
+r <- fit_and_compare2(df_sham_stim$AMT80_diff, "(Sham stim - sham pre)",
+                      df_no_stim$AMT80_diff, "(No stim - no pre)")
+r <- fit_and_compare2(df_sham_stim$AMT90_diff, "(Sham stim - sham pre)",
+                      df_no_stim$AMT90_diff, "(No stim - no pre)")
+r <- fit_and_compare2(df_sham_stim$AMT100_diff, "(Sham stim - sham pre)",
+                      df_no_stim$AMT100_diff, "(No stim - no pre)")
+
+r <- fit_and_compare2(df_sham_post$AMT70_diff, "(Sham post - sham pre)",
+                      df_no_post$AMT70_diff, "(No post - no pre)")
+r <- fit_and_compare2(df_sham_post$AMT80_diff, "(Sham post - sham pre)",
+                      df_no_post$AMT80_diff, "(No post - no pre)")
+r <- fit_and_compare2(df_sham_post$AMT90_diff, "(Sham post - sham pre)",
+                      df_no_post$AMT90_diff, "(No post - no pre)")
+r <- fit_and_compare2(df_sham_post$AMT100_diff, "(Sham post - sham pre)",
+                      df_no_post$AMT100_diff, "(No post - no pre)")
 
 # AUC3 -------------------------------------------------------------------------
 r <- fit_and_compare(df_real_stim$AUC3_diff, "Real stim")
@@ -199,11 +251,27 @@ df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
                                      diff = 2,
                                      condition = "Sham"))
 
+r <- fit_and_compare(df_no_stim$AUC3_diff, "No stim")
+df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
+                                     diff = 1,
+                                     condition = "No"))
+
+r <- fit_and_compare(df_no_post$AUC3_diff, "No post")
+df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
+                                     diff = 2,
+                                     condition = "No"))
+
 # add dummy entries
 df_samples <- df_samples %>%
   add_row(data.frame(mu = 0, diff = 0, condition = "Real"))
 df_samples <- df_samples %>%
   add_row(data.frame(mu = 0, diff = 0, condition = "Sham"))
+df_samples <- df_samples %>%
+  add_row(data.frame(mu = 0, diff = 0, condition = "No"))
+
+# set factors
+df_samples$condition <-
+  factor(df_samples$condition, levels = c("Real", "Sham", "No"))
 
 ggplot(df_samples, aes(x = diff, y = mu)) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "grey50") +
@@ -214,17 +282,67 @@ ggplot(df_samples, aes(x = diff, y = mu)) +
                     breaks = c(0, 1, 2),
                     labels = c("Pre", "During", "Post"))
 
-ggsave("./fig/SICI.tiff",
+ggsave("./fig/SICI_2.tiff",
        width = 1920,
        height = 960,
        dpi = 300,
        units = "px")
+
+# alternative plot
+r <- fit_and_compare(df_real_stim$AUC3_diff, "Real stim")
+df_samples <- data.frame(mu = r$mu,
+                         diff = 0.9,
+                         condition = "Real")
+
+r <- fit_and_compare(df_real_post$AUC3_diff, "Real post")
+df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
+                                     diff = 1.9,
+                                     condition = "Real"))
+
+r <- fit_and_compare(df_sham_stim$AUC3_diff, "Sham stim")
+df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
+                                     diff = 1.1,
+                                     condition = "Sham"))
+
+r <- fit_and_compare(df_sham_post$AUC3_diff, "Sham post")
+df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
+                                     diff = 2.1,
+                                     condition = "Sham"))
+
+# add dummy entries
+df_samples <- df_samples %>%
+  add_row(data.frame(mu = 0, diff = -0.1, condition = "Real"))
+df_samples <- df_samples %>%
+  add_row(data.frame(mu = 0, diff = 0.1, condition = "Sham"))
+
+ggplot(df_samples, aes(x = diff, y = mu, color = condition)) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "grey50") +
+  stat_pointinterval() +
+  ylab("Difference") +
+  scale_x_continuous(name = "",
+                    breaks = c(0, 1, 2),
+                    labels = c("Pre", "During", "Post")) +
+  scale_color_brewer(type = "qual", palette = 6)
+
 
 r <- fit_and_compare2(df_real_stim$AUC3_diff, "Real stim",
                       df_sham_stim$AUC3_diff, "Sham stim")
 
 r <- fit_and_compare2(df_real_post$AUC3_diff, "Real post",
                       df_sham_post$AUC3_diff, "Sham post")
+
+r <- fit_and_compare2(df_real_stim$AUC3_diff, "Real stim",
+                      df_no_stim$AUC3_diff, "No stim")
+
+r <- fit_and_compare2(df_real_post$AUC3_diff, "Real post",
+                      df_no_post$AUC3_diff, "No post")
+
+r <- fit_and_compare2(df_sham_stim$AUC3_diff, "Sham stim",
+                      df_no_stim$AUC3_diff, "No stim")
+
+r <- fit_and_compare2(df_sham_post$AUC3_diff, "Sham post",
+                      df_no_post$AUC3_diff, "No post")
+
 
 # AUC --------------------------------------------------------------------------
 r <- fit_and_compare(df_real_stim$AUC_diff, "Real stim")
