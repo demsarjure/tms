@@ -273,20 +273,22 @@ df_samples <- df_samples %>%
 df_samples$condition <-
   factor(df_samples$condition, levels = c("Real", "Sham", "No"))
 
-ggplot(df_samples, aes(x = diff, y = mu)) +
-  geom_hline(yintercept = 0, linetype = "dashed", color = "grey50") +
-  stat_pointinterval() +
-  ylab("Difference") +
-  facet_grid(. ~ condition) +
-  scale_x_continuous(name = "",
-                    breaks = c(0, 1, 2),
-                    labels = c("Pre", "During", "Post"))
+df_samples_sici <- df_samples
 
-ggsave("./fig/SICI_2.tiff",
-       width = 1920,
-       height = 960,
-       dpi = 300,
-       units = "px")
+# ggplot(df_samples, aes(x = diff, y = mu)) +
+#   geom_hline(yintercept = 0, linetype = "dashed", color = "grey50") +
+#   stat_pointinterval() +
+#   ylab("Difference") +
+#   facet_grid(. ~ condition) +
+#   scale_x_continuous(name = "",
+#                     breaks = c(0, 1, 2),
+#                     labels = c("Pre", "During", "Post"))
+
+# ggsave("./fig/SICI_2.tiff",
+#        width = 1920,
+#        height = 960,
+#        dpi = 300,
+#        units = "px")
 
 # alternative plot
 r <- fit_and_compare(df_real_stim$AUC3_diff, "Real stim")
@@ -342,6 +344,17 @@ r <- fit_and_compare2(df_sham_stim$AUC3_diff, "Sham stim",
 
 r <- fit_and_compare2(df_sham_post$AUC3_diff, "Sham post",
                       df_no_post$AUC3_diff, "No post")
+
+
+# pre comparison ---------------------------------------------------------------
+r <- fit_and_compare2(df_real_pre$AUC3, "Real", df_sham_pre$AUC3, "Sham")
+r <- fit_and_compare2(df_real_pre$AUC3, "Real", df_no_pre$AUC3, "No")
+r <- fit_and_compare2(df_sham_pre$AUC3, "Sham", df_no_pre$AUC3, "No")
+
+# SICI pre:
+# 	Real > Sham: 75.65 +/- 0.8 %
+# 	Real > No: 40.93 +/- 0.8 %
+# 	Sham > No: 21.05 +/- 0.8 %
 
 
 # AUC --------------------------------------------------------------------------

@@ -182,20 +182,22 @@ df_samples <- df_samples %>%
 df_samples$condition <-
   factor(df_samples$condition, levels = c("Real", "Sham", "No"))
 
-ggplot(df_samples, aes(x = diff, y = mu)) +
-  geom_hline(yintercept = 0, linetype = "dashed", color = "grey50") +
-  stat_pointinterval() +
-  ylab("Difference") +
-  facet_grid(. ~ condition) +
-  scale_x_continuous(name = "",
-                    breaks = c(0, 1, 2),
-                    labels = c("Pre", "During", "Post"))
+df_samples_rmt <- df_samples
 
-ggsave("./fig/RMT_2.tiff",
-       width = 1920,
-       height = 960,
-       dpi = 300,
-       units = "px")
+# ggplot(df_samples, aes(x = diff, y = mu)) +
+#   geom_hline(yintercept = 0, linetype = "dashed", color = "grey50") +
+#   stat_pointinterval() +
+#   ylab("Difference") +
+#   facet_grid(. ~ condition) +
+#   scale_x_continuous(name = "",
+#                     breaks = c(0, 1, 2),
+#                     labels = c("Pre", "During", "Post"))
+
+# ggsave("./fig/RMT_2.tiff",
+#        width = 1920,
+#        height = 960,
+#        dpi = 300,
+#        units = "px")
 
 r <- fit_and_compare2(df_real_stim$RMT_diff, "(Real stim - real pre)",
                       df_sham_stim$RMT_diff, "(Sham stim - sham pre)")
@@ -211,6 +213,18 @@ r <- fit_and_compare2(df_sham_stim$RMT_diff, "(Sham stim - sham pre)",
                       df_no_stim$RMT_diff, "(No stim - no pre)")
 r <- fit_and_compare2(df_sham_post$RMT_diff, "(Sham post - sham pre)",
                       df_no_post$RMT_diff, "(No post - no pre)")
+
+
+# pre comparison ---------------------------------------------------------------
+r <- fit_and_compare2(df_real_pre$RMT, "Real", df_sham_pre$RMT, "Sham")
+r <- fit_and_compare2(df_real_pre$RMT, "Real", df_no_pre$RMT, "No")
+r <- fit_and_compare2(df_sham_pre$RMT, "Sham", df_no_pre$RMT, "No")
+
+# RMT pre:
+# 	Real > Sham: 73.38 +/- 0.8 %
+# 	Real > No: 28.13 +/- 0.8 %
+# 	Sham > No: 10.58 +/- 0.6 %
+
 
 # AMT --------------------------------------------------------------------------
 r <- fit_and_compare(df_real_stim$AMT_diff, "(Real stim - real pre)")
@@ -255,20 +269,22 @@ df_samples <- df_samples %>%
 df_samples$condition <-
   factor(df_samples$condition, levels = c("Real", "Sham", "No"))
 
-ggplot(df_samples, aes(x = diff, y = mu)) +
-  geom_hline(yintercept = 0, linetype = "dashed", color = "grey50") +
-  stat_pointinterval() +
-  ylab("Difference") +
-  facet_grid(. ~ condition) +
-  scale_x_continuous(name = "",
-                    breaks = c(0, 1, 2),
-                    labels = c("Pre", "During", "Post"))
+df_samples_amt <- df_samples
 
-ggsave("./fig/AMT_2.tiff",
-       width = 1920,
-       height = 960,
-       dpi = 300,
-       units = "px")
+# ggplot(df_samples, aes(x = diff, y = mu)) +
+#   geom_hline(yintercept = 0, linetype = "dashed", color = "grey50") +
+#   stat_pointinterval() +
+#   ylab("Difference") +
+#   facet_grid(. ~ condition) +
+#   scale_x_continuous(name = "",
+#                     breaks = c(0, 1, 2),
+#                     labels = c("Pre", "During", "Post"))
+
+# ggsave("./fig/AMT_2.tiff",
+#        width = 1920,
+#        height = 960,
+#        dpi = 300,
+#        units = "px")
 
 r <- fit_and_compare2(df_real_stim$AMT_diff, "(Real stim - real pre)",
                       df_sham_stim$AMT_diff, "(Sham stim - sham pre)")
@@ -284,3 +300,14 @@ r <- fit_and_compare2(df_sham_stim$AMT_diff, "(Sham stim - sham pre)",
                       df_no_stim$AMT_diff, "(No stim - no pre)")
 r <- fit_and_compare2(df_sham_post$AMT_diff, "(Sham post - sham pre)",
                       df_no_post$AMT_diff, "(No post - no pre)")
+
+
+# pre comparison ---------------------------------------------------------------
+r <- fit_and_compare2(df_real_pre$AMT, "Real", df_sham_pre$AMT, "Sham")
+r <- fit_and_compare2(df_real_pre$AMT, "Real", df_no_pre$AMT, "No")
+r <- fit_and_compare2(df_sham_pre$AMT, "Sham", df_no_pre$AMT, "No")
+
+# AMT pre:
+# 	Real > Sham: 61.98 +/- 0.8 %
+# 	Real > No: 1.83 +/- 0.2 %
+# 	Sham > No: 2.05 +/- 0.2 %
