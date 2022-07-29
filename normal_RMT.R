@@ -217,13 +217,8 @@ r <- fit_and_compare2(df_sham_post$RMT_diff, "(Sham post - sham pre)",
 
 # pre comparison ---------------------------------------------------------------
 r <- fit_and_compare2(df_real_pre$RMT, "Real", df_sham_pre$RMT, "Sham")
-r <- fit_and_compare2(df_real_pre$RMT, "Real", df_no_pre$RMT, "No")
-r <- fit_and_compare2(df_sham_pre$RMT, "Sham", df_no_pre$RMT, "No")
+# Real > Sham: 26.62 +/- 0.8%
 
-# RMT pre:
-# 	Real > Sham: 73.38 +/- 0.8 %
-# 	Real > No: 28.13 +/- 0.8 %
-# 	Sham > No: 10.58 +/- 0.6 %
 
 
 # AMT --------------------------------------------------------------------------
@@ -304,10 +299,4 @@ r <- fit_and_compare2(df_sham_post$AMT_diff, "(Sham post - sham pre)",
 
 # pre comparison ---------------------------------------------------------------
 r <- fit_and_compare2(df_real_pre$AMT, "Real", df_sham_pre$AMT, "Sham")
-r <- fit_and_compare2(df_real_pre$AMT, "Real", df_no_pre$AMT, "No")
-r <- fit_and_compare2(df_sham_pre$AMT, "Sham", df_no_pre$AMT, "No")
-
-# AMT pre:
-# 	Real > Sham: 61.98 +/- 0.8 %
-# 	Real > No: 1.83 +/- 0.2 %
-# 	Sham > No: 2.05 +/- 0.2 %
+# Real > Sham: 61.98 +/- 0.8%

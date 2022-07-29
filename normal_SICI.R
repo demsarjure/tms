@@ -348,14 +348,19 @@ r <- fit_and_compare2(df_sham_post$AUC3_diff, "Sham post",
 
 # pre comparison ---------------------------------------------------------------
 r <- fit_and_compare2(df_real_pre$AUC3, "Real", df_sham_pre$AUC3, "Sham")
-r <- fit_and_compare2(df_real_pre$AUC3, "Real", df_no_pre$AUC3, "No")
-r <- fit_and_compare2(df_sham_pre$AUC3, "Sham", df_no_pre$AUC3, "No")
+# Real < Sham: 26.65 +/- 0.9%
 
-# SICI pre:
-# 	Real > Sham: 75.65 +/- 0.8 %
-# 	Real > No: 40.93 +/- 0.8 %
-# 	Sham > No: 21.05 +/- 0.8 %
+r <- fit_and_compare2(df_real_pre$AMT70, "Real", df_sham_pre$AMT70, "Sham")
+# Real < Sham: 66.35 +/- 0.8%
 
+r <- fit_and_compare2(df_real_pre$AMT80, "Real", df_sham_pre$AMT80, "Sham")
+# Real < Sham: 91.35 +/- 0.5%
+
+r <- fit_and_compare2(df_real_pre$AMT90, "Real", df_sham_pre$AMT90, "Sham")
+# Real < Sham: 17.05 +/- 0.7%
+
+r <- fit_and_compare2(df_real_pre$AMT100, "Real", df_sham_pre$AMT100, "Sham")
+# Real < Sham: 20.4 +/- 0.8%
 
 # AUC --------------------------------------------------------------------------
 r <- fit_and_compare(df_real_stim$AUC_diff, "Real stim")

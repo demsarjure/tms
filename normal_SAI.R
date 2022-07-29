@@ -255,14 +255,14 @@ df_samples_isi22 <- df_samples
 
 
 # pre comparison ---------------------------------------------------------------
-r <- fit_and_compare2(df_real_pre$ISI22, "Real", df_sham_pre$ISI22, "Sham")
-r <- fit_and_compare2(df_real_pre$ISI22, "Real", df_no_pre$ISI22, "No")
-r <- fit_and_compare2(df_sham_pre$ISI22, "Sham", df_no_pre$ISI22, "No")
+r <- fit_and_compare2(df_real_pre$ISI20, "Real", df_sham_pre$ISI20, "Sham")
+# Real > Sham: 5.7 +/- 0.4%
 
-# ISI22 pre:
-# 	Real > Sham: 31.8 +/- 0.8 %
-# 	Real > No: 92.58 +/- 0.7 %
-# 	Sham > No: 95.95 +/- 0.3 %
+r <- fit_and_compare2(df_real_pre$ISI22, "Real", df_sham_pre$ISI22, "Sham")
+# Real > Sham: 31.8 +/- 0.8%
+
+r <- fit_and_compare2(df_real_pre$ISI24, "Real", df_sham_pre$ISI24, "Sham")
+# Real > Sham: 22.73 +/- 0.7%
 
 
 # max_ISI ----------------------------------------------------------------------
