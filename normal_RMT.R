@@ -143,44 +143,44 @@ plot_fit <- function(samples,
 r <- fit_and_compare(df_real_stim$RMT_diff, "(Real stim - real pre)")
 df_samples <- data.frame(mu = r$mu,
                          diff = 1,
-                         condition = "Real")
+                         condition = "taVNS")
 
 r <- fit_and_compare(df_real_post$RMT_diff, "(Real post - real pre)")
 df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
                                      diff = 2,
-                                     condition = "Real"))
+                                     condition = "taVNS"))
 
 r <- fit_and_compare(df_sham_stim$RMT_diff, "(Sham stim - sham pre)")
 df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
                                      diff = 1,
-                                     condition = "Sham"))
+                                     condition = "sVNS"))
 
 r <- fit_and_compare(df_sham_post$RMT_diff, "(Sham post - sham pre)")
 df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
                                      diff = 2,
-                                     condition = "Sham"))
+                                     condition = "sVNS"))
 
 r <- fit_and_compare(df_no_stim$RMT_diff, "(No stim - no pre)")
 df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
                                      diff = 1,
-                                     condition = "No"))
+                                     condition = "xVNS"))
 
 r <- fit_and_compare(df_no_post$RMT_diff, "(No post - no pre)")
 df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
                                      diff = 2,
-                                     condition = "No"))
+                                     condition = "xVNS"))
 
 # add dummy entries
 df_samples <- df_samples %>%
-  add_row(data.frame(mu = 0, diff = 0, condition = "Real"))
+  add_row(data.frame(mu = 0, diff = 0, condition = "taVNS"))
 df_samples <- df_samples %>%
-  add_row(data.frame(mu = 0, diff = 0, condition = "Sham"))
+  add_row(data.frame(mu = 0, diff = 0, condition = "sVNS"))
 df_samples <- df_samples %>%
-  add_row(data.frame(mu = 0, diff = 0, condition = "No"))
+  add_row(data.frame(mu = 0, diff = 0, condition = "xVNS"))
 
 # set factors
 df_samples$condition <-
-  factor(df_samples$condition, levels = c("Real", "Sham", "No"))
+  factor(df_samples$condition, levels = c("taVNS", "sVNS", "xVNS"))
 
 df_samples_rmt <- df_samples
 
@@ -225,44 +225,44 @@ r <- fit_and_compare2(df_real_pre$RMT, "Real", df_sham_pre$RMT, "Sham")
 r <- fit_and_compare(df_real_stim$AMT_diff, "(Real stim - real pre)")
 df_samples <- data.frame(mu = r$mu,
                          diff = 1,
-                         condition = "Real")
+                         condition = "taVNS")
 
 r <- fit_and_compare(df_real_post$AMT_diff, "(Real post - real pre)")
 df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
                                      diff = 2,
-                                     condition = "Real"))
+                                     condition = "taVNS"))
 
 r <- fit_and_compare(df_sham_stim$AMT_diff, "(Sham stim - sham pre)")
 df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
                                      diff = 1,
-                                     condition = "Sham"))
+                                     condition = "sVNS"))
 
 r <- fit_and_compare(df_sham_post$AMT_diff, "(Sham post - sham pre)")
 df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
                                      diff = 2,
-                                     condition = "Sham"))
+                                     condition = "sVNS"))
 
 r <- fit_and_compare(df_no_stim$AMT_diff, "(No stim - no pre)")
 df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
                                      diff = 1,
-                                     condition = "No"))
+                                     condition = "xVNS"))
 
 r <- fit_and_compare(df_no_post$AMT_diff, "(No post - no pre)")
 df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
                                      diff = 2,
-                                     condition = "No"))
+                                     condition = "xVNS"))
 
 # add dummy entries
 df_samples <- df_samples %>%
-  add_row(data.frame(mu = 0, diff = 0, condition = "Real"))
+  add_row(data.frame(mu = 0, diff = 0, condition = "taVNS"))
 df_samples <- df_samples %>%
-  add_row(data.frame(mu = 0, diff = 0, condition = "Sham"))
+  add_row(data.frame(mu = 0, diff = 0, condition = "sVNS"))
 df_samples <- df_samples %>%
-  add_row(data.frame(mu = 0, diff = 0, condition = "No"))
+  add_row(data.frame(mu = 0, diff = 0, condition = "xVNS"))
 
 # set factors
 df_samples$condition <-
-  factor(df_samples$condition, levels = c("Real", "Sham", "No"))
+  factor(df_samples$condition, levels = c("taVNS", "sVNS", "xVNS"))
 
 df_samples_amt <- df_samples
 

@@ -213,43 +213,43 @@ r <- fit_and_compare2(df_sham_post$ISI24_diff, "(Sham post - sham pre)",
 r <- fit_and_compare(df_real_stim$ISI22_diff, "(Real stim - real pre)")
 df_samples <- data.frame(mu = r$mu,
                          diff = 1,
-                         condition = "Real")
+                         condition = "taVNS")
 
 r <- fit_and_compare(df_real_post$ISI22_diff, "(Real post - real stim)")
 df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
                                      diff = 2,
-                                     condition = "Real"))
+                                     condition = "taVNS"))
 
 r <- fit_and_compare(df_sham_stim$ISI22_diff, "(Sham stim - sham pre)")
 df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
                                      diff = 1,
-                                     condition = "Sham"))
+                                     condition = "sVNS"))
 
 r <- fit_and_compare(df_sham_post$ISI22_diff, "(Sham post - sham pre)")
 df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
                                      diff = 2,
-                                     condition = "Sham"))
+                                     condition = "sVNS"))
 
 r <- fit_and_compare(df_no_stim$ISI22_diff, "(No stim - no pre)")
 df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
                                      diff = 1,
-                                     condition = "No"))
+                                     condition = "xVNS"))
 
 r <- fit_and_compare(df_no_post$ISI22_diff, "(No post - no pre)")
 df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
                                      diff = 2,
-                                     condition = "No"))
+                                     condition = "xVNS"))
 
 # add dummy entries
 df_samples <- df_samples %>%
-  add_row(data.frame(mu = 0, diff = 0, condition = "Real"))
+  add_row(data.frame(mu = 0, diff = 0, condition = "taVNS"))
 df_samples <- df_samples %>%
-  add_row(data.frame(mu = 0, diff = 0, condition = "Sham"))
+  add_row(data.frame(mu = 0, diff = 0, condition = "sVNS"))
 df_samples <- df_samples %>%
-  add_row(data.frame(mu = 0, diff = 0, condition = "No"))
+  add_row(data.frame(mu = 0, diff = 0, condition = "xVNS"))
 
 df_samples$condition <-
-  factor(df_samples$condition, levels = c("Real", "Sham", "No"))
+  factor(df_samples$condition, levels = c("taVNS", "sVNS", "xVNS"))
 
 df_samples_isi22 <- df_samples
 
@@ -269,44 +269,44 @@ r <- fit_and_compare2(df_real_pre$ISI24, "Real", df_sham_pre$ISI24, "Sham")
 # r <- fit_and_compare(df_real_stim$max_ISI_diff, "(Real stim - real pre)")
 # df_samples <- data.frame(mu = r$mu,
 #                          diff = 1,
-#                          condition = "Real")
+#                          condition = "taVNS")
 
 # r <- fit_and_compare(df_real_post$max_ISI_diff, "(Real post - real stim)")
 # df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
 #                                      diff = 2,
-#                                      condition = "Real"))
+#                                      condition = "taVNS"))
 
 # r <- fit_and_compare(df_sham_stim$max_ISI_diff, "(Sham stim - sham pre)")
 # df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
 #                                      diff = 1,
-#                                      condition = "Sham"))
+#                                      condition = "sVNS"))
 
 # r <- fit_and_compare(df_sham_post$max_ISI_diff, "(Sham post - sham pre)")
 # df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
 #                                      diff = 2,
-#                                      condition = "Sham"))
+#                                      condition = "sVNS"))
 
 # r <- fit_and_compare(df_no_stim$max_ISI_diff, "(No stim - no pre)")
 # df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
 #                                      diff = 1,
-#                                      condition = "No"))
+#                                      condition = "xVNS"))
 
 # r <- fit_and_compare(df_no_post$max_ISI_diff, "(No post - no pre)")
 # df_samples <- df_samples %>% add_row(data.frame(mu = r$mu,
 #                                      diff = 2,
-#                                      condition = "No"))
+#                                      condition = "xVNS"))
 
 # # add dummy entries
 # df_samples <- df_samples %>%
-#   add_row(data.frame(mu = 0, diff = 0, condition = "Real"))
+#   add_row(data.frame(mu = 0, diff = 0, condition = "taVNS"))
 # df_samples <- df_samples %>%
-#   add_row(data.frame(mu = 0, diff = 0, condition = "Sham"))
+#   add_row(data.frame(mu = 0, diff = 0, condition = "sVNS"))
 # df_samples <- df_samples %>%
-#   add_row(data.frame(mu = 0, diff = 0, condition = "No"))
+#   add_row(data.frame(mu = 0, diff = 0, condition = "xVNS"))
 
 # set factors
 # df_samples$condition <-
-#  factor(df_samples$condition, levels = c("Real", "Sham", "No"))
+#  factor(df_samples$condition, levels = c("taVNS", "sVNS", "xVNS"))
 
 # ggplot(df_samples, aes(x = diff, y = mu)) +
 #  geom_hline(yintercept = 0, linetype = "dashed", color = "grey50") +
