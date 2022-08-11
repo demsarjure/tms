@@ -64,17 +64,9 @@ for (i in 1:n_visits) {
 df_no <- df_no %>% drop_na()
 
 # AUC
-df_no$AUC <- df_no$AMT70 + df_no$AMT80 + df_no$AMT90 + df_no$AMT100
-df_no$AUC_baseline <- df_no$AMT70_baseline + df_no$AMT80_baseline + df_no$AMT90_baseline + df_no$AMT100_baseline
-df_no$AUC_diff <- df_no$AMT70_diff + df_no$AMT80_diff + df_no$AMT90_diff + df_no$AMT100_diff
-
 df_no$AUC3 <- 1/3 * (df_no$AMT70+df_no$AMT90) + 1/3 * (df_no$AMT80+df_no$AMT100) + 1/3 * (df_no$AMT90+df_no$AMT100)
 df_no$AUC3_baseline <- 1/3 * (df_no$AMT70_baseline+df_no$AMT90_baseline) + 1/3 * (df_no$AMT80_baseline+df_no$AMT100_baseline) + 1/3 * (df_no$AMT90_baseline+df_no$AMT100_baseline)
 df_no$AUC3_diff <- 1/3 * (df_no$AMT70_diff+df_no$AMT90_diff) + 1/3 * (df_no$AMT80_diff+df_no$AMT100_diff) + 1/3 * (df_no$AMT90_diff+df_no$AMT100_diff)
-
-df_no$AUCAVG <- (df_no$AMT70+df_no$AMT80+df_no$AMT90+df_no$AMT100) / 4
-df_no$AUCAVG_baseline <- (df_no$AMT70_baseline+df_no$AMT80_baseline+df_no$AMT90_baseline+df_no$AMT100_baseline) / 4
-df_no$AUCAVG_diff <- (df_no$AMT70_diff+df_no$AMT80_diff+df_no$AMT90_diff+df_no$AMT100_diff) / 4
 
 # split into subgroups ---------------------------------------------------------
 # by time
