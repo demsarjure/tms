@@ -1,8 +1,10 @@
+library(glue)
+
 # first run all the normal fitting functions to get samples in appropriate dfs
 # add type
 df_samples_rmt$type <- "ΔRMT"
 df_samples_amt$type <- "ΔAMT"
-df_samples_isi22$type <- "ΔSAI[ISI22]"
+df_samples_isi24$type <- "ISI24"
 df_samples_sici$type <- "ΔSICI[AUC]"
 
 # rmt and amt ------------------------------------------------------------------
@@ -29,11 +31,12 @@ ggsave("./fig/AMT_RMT_FINAL.tiff",
 
 
 # sai --------------------------------------------------------------------------
-ggplot(df_samples_isi22, aes(x = diff, y = mu, color = condition)) +
+ggplot(df_samples_isi24, aes(x = diff, y = mu, color = condition)) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "grey50") +
   stat_pointinterval() +
   ylab("Difference") +
-  facet_grid(type ~ condition, scales = "free_y", labeller = label_parsed) +
+  facet_grid(glue('Delta*SAI["{type}"]') ~ condition,
+                  scales = "free_y", labeller = label_parsed) +
   scale_x_continuous(name = "",
                      breaks = c(0, 1, 2),
                      labels = c("Pre", "During", "Post")) +
