@@ -13,16 +13,16 @@ df$ISI20_diff2 <- 0
 df$ISI22_diff2 <- 0
 df$ISI24_diff2 <- 0
 
-n_visits = max(df$ID) * 2
+n_visits <- max(df$ID) * 2
 for (i in 1:n_visits) {
-  ix = 1 + ((i - 1) * 3)
+  ix <- 1 + ((i - 1) * 3)
 
   # ISI20
   df[ix + 1, ]$ISI20_diff <- df[ix + 1, ]$ISI20 - df[ix, ]$ISI20
   df[ix + 2, ]$ISI20_diff <- df[ix + 2, ]$ISI20 - df[ix, ]$ISI20
   df[ix + 2, ]$ISI20_diff2 <- df[ix + 2, ]$ISI20 - df[ix + 1, ]$ISI20
 
-  # ISI22 
+  # ISI22
   df[ix + 1, ]$ISI22_diff <- df[ix + 1, ]$ISI22 - df[ix, ]$ISI22
   df[ix + 2, ]$ISI22_diff <- df[ix + 2, ]$ISI22 - df[ix, ]$ISI22
   df[ix + 2, ]$ISI22_diff2 <- df[ix + 2, ]$ISI22 - df[ix + 1, ]$ISI22

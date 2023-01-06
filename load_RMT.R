@@ -15,9 +15,9 @@ df$AMT_diff <- 0
 df$AMT_diff2 <- 0
 df$AMT_response <- 0
 
-n_visits = max(df$ID) * 2
+n_visits <- max(df$ID) * 2
 for (i in 1:n_visits) {
-  ix = 1 + ((i - 1) * 3)
+  ix <- 1 + ((i - 1) * 3)
 
   # RMT baseline
   df[ix:(ix+2), ]$RMT_baseline <- df[ix, ]$RMT
@@ -28,7 +28,7 @@ for (i in 1:n_visits) {
   df[ix + 2, ]$RMT_diff2 <- df[ix + 2, ]$RMT - df[ix + 1, ]$RMT
 
   # AMT baseline
-  df[ix:(ix+2), ]$AMT_baseline <- df[ix, ]$AMT
+  df[ix:(ix + 2), ]$AMT_baseline <- df[ix, ]$AMT
 
   # AMT differences
   df[ix + 1, ]$AMT_diff <- df[ix + 1, ]$AMT - df[ix, ]$AMT

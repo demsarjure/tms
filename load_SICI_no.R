@@ -28,7 +28,7 @@ for (i in 1:n_visits) {
   ix <- 1 + ((i - 1) * 3)
 
   # AMT70 baseline
-  df_no[ix:(ix+2), ]$AMT70_baseline <- df_no[ix, ]$AMT70
+  df_no[ix:(ix + 2), ]$AMT70_baseline <- df_no[ix, ]$AMT70
 
   # AMT70 differences
   df_no[ix + 1, ]$AMT70_diff <- df_no[ix + 1, ]$AMT70 - df_no[ix, ]$AMT70
@@ -44,7 +44,7 @@ for (i in 1:n_visits) {
   df_no[ix + 2, ]$AMT80_diff2 <- df_no[ix + 2, ]$AMT80 - df_no[ix + 1, ]$AMT80
 
   # AMT90 baseline
-  df_no[ix:(ix+2), ]$AMT90_baseline <- df_no[ix, ]$AMT90
+  df_no[ix:(ix + 2), ]$AMT90_baseline <- df_no[ix, ]$AMT90
 
   # AMT90 differences
   df_no[ix + 1, ]$AMT90_diff <- df_no[ix + 1, ]$AMT90 - df_no[ix, ]$AMT90

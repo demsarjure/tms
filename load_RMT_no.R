@@ -16,7 +16,7 @@ for (i in 1:n_visits) {
   ix <- 1 + ((i - 1) * 3)
 
   # RMT baseline
-  df_no[ix:(ix+2), ]$RMT_baseline <- df_no[ix, ]$RMT
+  df_no[ix:(ix + 2), ]$RMT_baseline <- df_no[ix, ]$RMT
 
   # RMT differences
   df_no[ix + 1, ]$RMT_diff <- df_no[ix + 1, ]$RMT - df_no[ix, ]$RMT
