@@ -5,15 +5,13 @@ library(tidyverse)
 # load the data
 df <- read_excel("./data/RMT_GLMM.xlsx")
 
-# create difference and response columns for each visit
+# create difference columns for each visit
 df$RMT_baseline <- 0
 df$RMT_diff <- 0
 df$RMT_diff2 <- 0
-df$RMT_response <- 0
 df$AMT_baseline <- 0
 df$AMT_diff <- 0
 df$AMT_diff2 <- 0
-df$AMT_response <- 0
 
 n_visits <- max(df$ID) * 2
 for (i in 1:n_visits) {

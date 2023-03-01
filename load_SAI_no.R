@@ -5,7 +5,7 @@ library(tidyverse)
 # load the data
 df_no <- read_excel("./data/SAI_GLMM_no.xlsx")
 
-# create difference and response columns for each visit
+# create difference columns for each visit
 df_no$ISI20_diff <- 0
 df_no$ISI22_diff <- 0
 df_no$ISI24_diff <- 0
